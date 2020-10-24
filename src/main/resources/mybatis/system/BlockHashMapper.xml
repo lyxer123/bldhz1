@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bld.project.system.block.mapper.BlockHashMapper">
+    <resultMap type="com.bld.project.system.block.model.BlockHash" id="blockDeviceBaseMap">
+        <id property="id" column="id"/>
+        <result property="chipId" column="chip_id"/>
+        <result property="hash" column="hash"/>
+        <result property="toWallet" column="to_wallet"/>
+        <result property="fromWallet" column="from_wallet"/>
+        <result property="money" column="money"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="add">
+        INSERT INTO block_hash
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+           <if test="chipId != null">,chip_id</if>
+           <if test="hash != null">,hash</if>
+           <if test="toWallet != null">,to_wallet</if>
+           <if test="fromWallet != null">,from_wallet</if>
+           <if test="money != null">,money</if>
+           <if test="addTime != null">,add_time</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="chipId != null">,#{chipId}</if>
+            <if test="hash != null">,#{hash}</if>
+            <if test="toWallet != null">,#{toWallet}</if>
+            <if test="fromWallet != null">,#{fromWallet}</if>
+            <if test="money != null">,#{money}</if>
+            <if test="addTime != null">,#{addTime}</if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM block_hash
+        WHERE
+        <trim prefixOverrides="AND">
+            <if test="chipId != null">AND chip_id = #{chipId}</if>
+            <if test="hash != null">AND hash = #{hash}</if>
+            <if test="toWallet != null">AND to_wallet = #{toWallet}</if>
+            <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
+            <if test="money != null">AND money = #{money}</if>
+        </trim>
+    </delete>
+
+    <update id="update">
+        UPDATE block_hash
+        <trim prefix="SET" prefixOverrides=",">
+            <trim prefixOverrides="AND">
+                <if test="update.chipId != null"> ,chip_id = #{update.chipId}</if>
+                <if test="update.hash != null"> ,hash = #{update.hash}</if>
+                <if test="update.toWallet != null"> ,to_wallet = #{update.toWallet}</if>
+                <if test="update.fromWallet != null"> ,from_wallet = #{update.fromWallet}</if>
+                <if test="update.money != null"> ,money = #{update.money}</if>
+                <if test="update.addTime != null"> ,add_time = #{update.addTime}</if>
+            </trim>
+        </trim>
+        WHERE
+        <trim prefixOverrides="AND">
+            <if test="where.chipId != null">AND chip_id = #{where.chipId}</if>
+            <if test="where.hash != null">AND hash = #{where.hash}</if>
+            <if test="where.toWallet != null">AND to_wallet = #{where.toWallet}</if>
+            <if test="where.fromWallet != null">AND from_wallet = #{where.fromWallet}</if>
+            <if test="where.money != null">AND money = #{where.money}</if>
+        </trim>
+    </update>
+
+    <select id="select" resultMap="blockDeviceBaseMap">
+        SELECT *
+        FROM block_hash
+        <where>
+            <if test="chipId != null">AND chip_id = #{chipId}</if>
+            <if test="hash != null">AND hash = #{hash}</if>
+            <if test="toWallet != null">AND to_wallet = #{toWallet}</if>
+            <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
+            <if test="money != null">AND money = #{money}</if>
+        </where>
+    </select>
+</mapper>

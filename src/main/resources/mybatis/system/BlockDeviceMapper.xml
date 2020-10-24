@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bld.project.system.block.mapper.BlockDeviceMapper">
+    <resultMap type="com.bld.project.system.block.model.BlockDevice" id="blockDeviceBaseMap">
+        <id property="id" column="id"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="chipId" column="chip_id"/>
+        <result property="deviceVersion" column="device_version"/>
+        <result property="toWallet" column="to_wallet"/>
+        <result property="deviceWallet" column="device_wallet"/>
+        <result property="deviceToken" column="device_token"/>
+        <result property="gps" column="gps"/>
+        <result property="addr" column="addr"/>
+        <result property="transactionHistory" column="transaction_history"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="sn1" column="sn1"/>
+        <result property="sn2" column="sn2"/>
+    </resultMap>
+
+    <insert id="add">
+        INSERT INTO block_device
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="id != null">
+                id
+            </if>
+            <if test="deviceId != null">
+                ,device_id
+            </if>
+            <if test="tenantId != null">
+                ,tenant_id
+            </if>
+            <if test="customerId != null">
+                ,customer_id
+            </if>
+            <if test="chipId != null">
+                ,chip_id
+            </if>
+            <if test="deviceVersion != null">
+                ,device_version
+            </if>
+            <if test="toWallet != null">
+                ,to_wallet
+            </if>
+            <if test="deviceWallet != null">
+                ,device_wallet
+            </if>
+            <if test="deviceToken != null">
+                ,device_token
+            </if>
+            <if test="gps != null">
+                ,hash_history
+            </if>
+            <if test="transactionHistory != null">
+                ,transaction_history
+            </if>
+            <if test="addTime != null">
+                ,add_time
+            </if>
+            <if test="updateTime != null">
+                ,update_time
+            </if>
+            <if test="deviceMoney != null">
+                ,device_money
+            </if>
+            <if test="sn1 != null">
+                ,sn1
+            </if>
+            <if test="sn2 != null">
+                ,sn2
+            </if>
+            <if test="addr != null">
+                , addr
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="id != null">
+                #{id}
+            </if>
+            <if test="deviceId != null">
+                ,#{deviceId}
+            </if>
+            <if test="tenantId != null">
+                ,#{tenantId}
+            </if>
+            <if test="customerId != null">
+                ,#{customerId}
+            </if>
+            <if test="chipId != null">
+                ,#{chipId}
+            </if>
+            <if test="deviceVersion != null">
+                ,#{deviceVersion}
+            </if>
+            <if test="toWallet != null">
+                ,#{toWallet}
+            </if>
+            <if test="deviceWallet != null">
+                ,#{deviceWallet}
+            </if>
+            <if test="deviceToken != null">
+                ,#{deviceToken}
+            </if>
+            <if test="gps != null">
+                ,#{gps}
+            </if>
+            <if test="transactionHistory != null">
+                ,#{transactionHistory}
+            </if>
+            <if test="addTime != null">
+                ,#{addTime}
+            </if>
+            <if test="updateTime != null">
+                ,#{updateTime}
+            </if>
+            <if test="deviceMoney != null">
+                ,#{deviceMoney}
+            </if>
+            <if test="sn1 != null">
+                ,#{sn1}
+            </if>
+            <if test="sn2 != null">
+                ,#{sn2}
+            </if>
+            <if test="addr != null">
+                , #{update.addr}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM block_device
+        WHERE
+        <trim prefixOverrides="AND">
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="deviceId != null">
+                AND device_id = #{deviceId}
+            </if>
+            <if test="tenantId != null">
+                AND tenant_id = #{tenantId}
+            </if>
+            <if test="customerId != null">
+                AND customer_id = #{customerId}
+            </if>
+            <if test="chipId != null">
+                AND chip_id = #{chipId}
+            </if>
+            <if test="deviceVersion != null">
+                AND device_version = #{deviceVersion}
+            </if>
+            <if test="toWallet != null">
+                AND to_wallet = #{toWallet}
+            </if>
+            <if test="deviceWallet != null">
+                AND device_wallet = #{deviceWallet}
+            </if>
+            <if test="deviceToken != null">
+                AND device_token = #{deviceToken}
+            </if>
+            <if test="gps != null">
+                AND hash_history = #{gps}
+            </if>
+            <if test="transactionHistory != null">
+                AND transaction_history = #{transactionHistory}
+            </if>
+            <if test="addTime != null">
+                AND add_time = #{addTime}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+            <if test="deviceMoney != null">
+                AND device_money = #{deviceMoney}
+            </if>
+            <if test="sn1 != null">
+                AND sn1 = #{sn1}
+            </if>
+            <if test="sn2 != null">
+                AND sn2 = #{sn2}
+            </if>
+        </trim>
+    </delete>
+
+    <update id="update">
+        UPDATE block_device
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="update.id != null">
+                id = #{update.id}
+            </if>
+            <if test="update.deviceId != null">
+                ,device_id = #{update.deviceId}
+            </if>
+            <if test="update.tenantId != null">
+                ,tenant_id = #{update.tenantId}
+            </if>
+            <if test="update.customerId != null">
+                ,customer_id = #{update.customerId}
+            </if>
+            <if test="update.chipId != null">
+                ,chip_id = #{update.chipId}
+            </if>
+            <if test="update.deviceVersion != null">
+                ,device_version = #{update.deviceVersion}
+            </if>
+            <if test="update.toWallet != null">
+                ,to_wallet = #{update.toWallet}
+            </if>
+            <if test="update.deviceWallet != null">
+                ,device_wallet = #{update.deviceWallet}
+            </if>
+            <if test="update.deviceToken != null">
+                ,device_token = #{update.deviceToken}
+            </if>
+            <if test="update.gps != null">
+                ,hash_history = #{update.gps}
+            </if>
+            <if test="update.transactionHistory != null">
+                ,transaction_history = #{update.transactionHistory}
+            </if>
+            <if test="update.deviceMoney != null">
+                ,device_money = #{update.deviceMoney}
+            </if>
+            <if test="update.sn1 != null">
+                , sn1 = #{update.sn1}
+            </if>
+            <if test="update.sn2 != null">
+                , sn2 = #{update.sn2}
+            </if>
+            <if test="update.addr != null">
+                , addr = #{update.addr}
+            </if>
+        </trim>
+        WHERE
+        <trim prefixOverrides="AND">
+            <if test="where.id != null">
+                id = #{where.id}
+            </if>
+            <if test="where.deviceId != null">
+                AND device_id = #{where.deviceId}
+            </if>
+            <if test="where.tenantId != null">
+                AND tenant_id = #{where.tenantId}
+            </if>
+            <if test="where.customerId != null">
+                AND customer_id = #{where.customerId}
+            </if>
+            <if test="where.chipId != null">
+                AND chip_id = #{where.chipId}
+            </if>
+            <if test="where.deviceVersion != null">
+                AND device_version = #{where.deviceVersion}
+            </if>
+            <if test="where.toWallet != null">
+                AND to_wallet = #{where.toWallet}
+            </if>
+            <if test="where.deviceWallet != null">
+                AND device_wallet = #{where.deviceWallet}
+            </if>
+            <if test="where.deviceToken != null">
+                AND device_token = #{where.deviceToken}
+            </if>
+            <if test="where.gps != null">
+                AND hash_history = #{where.gps}
+            </if>
+            <if test="where.transactionHistory != null">
+                AND transaction_history = #{where.transactionHistory}
+            </if>
+            <if test="where.addTime != null">
+                AND add_time = #{where.addTime}
+            </if>
+            <if test="where.updateTime != null">
+                AND update_time = #{where.updateTime}
+            </if>
+            <if test="where.deviceMoney != null">
+                AND device_money = #{deviceMoney}
+            </if>
+            <if test="where.sn1 != null">
+                AND sn1 = #{where.sn1}
+            </if>
+            <if test="where.sn2 != null">
+                AND sn2 = #{where.sn2}
+            </if>
+        </trim>
+    </update>
+
+    <update id="updateGps">
+        UPDATE block_device
+        SET gps = #{gps}, addr = #{addr}
+        WHERE chip_id = #{chipId}
+    </update>
+
+    <select id="select" resultMap="blockDeviceBaseMap">
+        SELECT <if test="selectGps"> chip_id, gps, addr, customer_id, device_id</if>
+               <if test="!selectGps">*</if>
+        FROM block_device
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="deviceId != null">
+                AND device_id = #{deviceId}
+            </if>
+            <if test="tenantId != null">
+                AND tenant_id = #{tenantId}
+            </if>
+            <if test="customerId != null">
+                AND customer_id = #{customerId}
+            </if>
+            <if test="chipId != null">
+                AND chip_id = #{chipId}
+            </if>
+            <if test="deviceVersion != null">
+                AND device_version = #{deviceVersion}
+            </if>
+            <if test="toWallet != null">
+                AND to_wallet = #{toWallet}
+            </if>
+            <if test="deviceWallet != null">
+                AND device_wallet = #{deviceWallet}
+            </if>
+            <if test="deviceToken != null">
+                AND device_token = #{deviceToken}
+            </if>
+            <if test="gps != null">
+                AND hash_history = #{gps}
+            </if>
+            <if test="transactionHistory != null">
+                AND transaction_history = #{transactionHistory}
+            </if>
+            <if test="deviceMoney != null">
+                AND device_money = #{deviceMoney}
+            </if>
+            <if test="addTime != null">
+                AND add_time = #{addTime}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+            <if test="search != null and search != ''">
+                AND chip_id LIKE #{search}
+            </if>
+            <if test="sn1 != null">
+                AND sn1 = #{sn1}
+            </if>
+            <if test="sn2 != null">
+                AND sn2 = #{sn2}
+            </if>
+        </where>
+    </select>
+</mapper>
