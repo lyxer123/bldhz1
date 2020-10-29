@@ -1,11 +1,9 @@
-package com.bld.newlyadded.entity;
+package com.bld.project.newlyadded.entity;
 
 import lombok.Data;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystem;
 import org.hyperic.sigar.Mem;
-
-import java.math.BigDecimal;
 
 /**
  * 内存

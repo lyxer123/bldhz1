@@ -1,13 +1,12 @@
-package com.bld.newlyadded.untils;
+package com.bld.project.newlyadded.untils;
 
-import com.bld.newlyadded.entity.SystemEntity;
+
+import com.bld.project.newlyadded.entity.SystemEntity;
 import org.hyperic.sigar.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.math.BigDecimal;
 
 @Component
 public class GetSystem {
@@ -31,7 +30,7 @@ public class GetSystem {
         }
         //计算平均使用率
         double usecpu = cpuuse/(double) cpuPercList.length;
-        long totalSizeOfFilesInDir = getTotalSizeOfFilesInDir(new File("D:\\home"));
+        long totalSizeOfFilesInDir = getTotalSizeOfFilesInDir(new File("/usr/local/besu"));
 
         long used = 0;//使用的
         long free = 0;//未使用的
@@ -76,7 +75,7 @@ public class GetSystem {
         systemEntity.setFileTotal(total/1024/1024);
         systemEntity.setFileUse(used/1024/1024);
         systemEntity.setCpuuse(usecpu);
-        systemEntity.setWatchFile((double)totalSizeOfFilesInDir/1024/1024);
+        //systemEntity.setWatchFile((double)FileUtils.sizeOf(new File("/usr/local/besu"))/1024/1024/1024);
         if(mem != null){
             systemEntity.setMenUse((mem.getUsed()*1.0)/mem.getTotal());
         }

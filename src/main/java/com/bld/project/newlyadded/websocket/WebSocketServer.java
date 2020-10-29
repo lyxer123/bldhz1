@@ -1,21 +1,16 @@
-package com.bld.newlyadded.websocket;
+package com.bld.project.newlyadded.websocket;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.bld.newlyadded.config.WebSocketConfig;
-import com.bld.newlyadded.entity.SystemEntity;
-import com.bld.newlyadded.untils.GetSystem;
-import jdk.nashorn.internal.parser.JSONParser;
+import com.bld.project.newlyadded.entity.SystemEntity;
+import com.bld.project.newlyadded.untils.GetSystem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicInteger;
 //@ConditionalOnClass(value = WebSocketConfig.class)
 
 @ServerEndpoint(value = "/imserver/")

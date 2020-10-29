@@ -1,18 +1,13 @@
-package com.bld.newlyadded.untils;
+package com.bld.project.newlyadded.untils;
 
 
-import com.bld.newlyadded.websocket.WebSocketServer;
+import com.bld.project.newlyadded.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -35,4 +30,9 @@ public class SaticScheduleTask implements ApplicationRunner {
             webSocketServer.sendMessage();
         }, 0, 3, TimeUnit.SECONDS);
     }
+
+
+
+
+
 }

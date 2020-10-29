@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bld.project.newlyadded.mapper.BesuFileMapper">
+
+    <insert id="insertFile">
+        INSERT INTO besu_file(file_size,create_time) VALUES(#{fileSize},now())
+    </insert>
+
+    <select id="list" resultType="com.bld.project.newlyadded.entity.BesuFileEntity">
+        select id,file_size,create_time from besu_file order by create_time DESC limit 0,30
+    </select>
+</mapper>

@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 	<!--<packaging>war</packaging>-->
 
-	<name>bld</name>
+	<name>bld111</name>
 	<description>充电链</description>
 
 	<parent>
@@ -349,14 +349,16 @@
 			<artifactId>sigar</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-core</artifactId>
+        </dependency>
 
 
-
-
-	</dependencies>
+    </dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>bld111</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

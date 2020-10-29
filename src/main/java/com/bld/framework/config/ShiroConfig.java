@@ -235,6 +235,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/static/js/**", "anon");
         filterChainDefinitionMap.put("/static/css/**", "anon");
         filterChainDefinitionMap.put("/bld/**", "anon");
+        filterChainDefinitionMap.put("/imserver/**", "anon,captchaValidate");
         filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
         // 退出 logout地址，shiro去清除session
         filterChainDefinitionMap.put("/logout", "logout");

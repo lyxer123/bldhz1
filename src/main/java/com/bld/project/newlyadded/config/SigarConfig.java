@@ -1,4 +1,4 @@
-package com.bld.newlyadded.config;
+package com.bld.project.newlyadded.config;
 
 import org.hyperic.sigar.Sigar;
 import org.springframework.context.annotation.Bean;
