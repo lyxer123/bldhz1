@@ -1,5 +1,8 @@
 package com.bld.project.system.block.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.bld.common.utils.StringUtils;
 import lombok.Data;
@@ -14,10 +17,12 @@ import java.util.Date;
 */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@TableName("block_device")
 public class BlockDevice implements Serializable {
     /**
      * 主键
      */
+    @TableId
     private String id;
     /**
      * 设备id
@@ -89,10 +94,12 @@ public class BlockDevice implements Serializable {
     /**
      * limit第一个参数， 查询起始行数
      */
+    @TableField(exist = false)
     private Integer pageNum;
     /**
      * limit第二个参数， 查询数量
      */
+    @TableField(exist = false)
     private Integer pageSize;
     /**
      * 名称模糊查询
@@ -101,6 +108,7 @@ public class BlockDevice implements Serializable {
     /**
      * 是否只查询gps信息
      */
+    @TableField(exist = false)
     private boolean selectGps = false;
 
 //    -------------------------------展示用字段-----------------------------------------
@@ -111,6 +119,7 @@ public class BlockDevice implements Serializable {
     /**
      * 是否是besu测试
      */
+    @TableField(exist = false)
     private Boolean isBesu = false;
 
     public void setSearch(String search) {

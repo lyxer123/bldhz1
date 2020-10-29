@@ -54,4 +54,7 @@ public interface BlockDeviceMapper {
      * @return  java.util.List<com.bld.project.system.block.model.BlockDevice>
      */
     List<BlockDevice> select(BlockDevice blockDevice);
+
+    /*查询总条数*/
+    Integer selectCount(BlockDevice blockDevice);
 }

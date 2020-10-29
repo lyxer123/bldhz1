@@ -351,5 +351,64 @@
                 AND sn2 = #{sn2}
             </if>
         </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="integer">
+        SELECT count(1)
+        FROM block_device
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="deviceId != null">
+                AND device_id = #{deviceId}
+            </if>
+            <if test="tenantId != null">
+                AND tenant_id = #{tenantId}
+            </if>
+            <if test="customerId != null">
+                AND customer_id = #{customerId}
+            </if>
+            <if test="chipId != null">
+                AND chip_id = #{chipId}
+            </if>
+            <if test="deviceVersion != null">
+                AND device_version = #{deviceVersion}
+            </if>
+            <if test="toWallet != null">
+                AND to_wallet = #{toWallet}
+            </if>
+            <if test="deviceWallet != null">
+                AND device_wallet = #{deviceWallet}
+            </if>
+            <if test="deviceToken != null">
+                AND device_token = #{deviceToken}
+            </if>
+            <if test="gps != null">
+                AND hash_history = #{gps}
+            </if>
+            <if test="transactionHistory != null">
+                AND transaction_history = #{transactionHistory}
+            </if>
+            <if test="deviceMoney != null">
+                AND device_money = #{deviceMoney}
+            </if>
+            <if test="addTime != null">
+                AND add_time = #{addTime}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+            <if test="search != null and search != ''">
+                AND chip_id LIKE #{search}
+            </if>
+            <if test="sn1 != null">
+                AND sn1 = #{sn1}
+            </if>
+            <if test="sn2 != null">
+                AND sn2 = #{sn2}
+            </if>
+        </where>
     </select>
 </mapper>
