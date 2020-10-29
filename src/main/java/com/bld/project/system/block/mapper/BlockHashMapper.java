@@ -44,4 +44,6 @@ public interface BlockHashMapper {
      * @return  java.util.List<com.bld.project.system.block.model.BlockHash>
      */
     List<BlockHash> select(BlockHash bh);
+
+    Integer selectCount(BlockHash bh);
 }

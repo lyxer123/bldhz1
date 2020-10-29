@@ -77,5 +77,18 @@
             <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
             <if test="money != null">AND money = #{money}</if>
         </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="integer">
+        SELECT count(1)
+        FROM block_hash
+        <where>
+            <if test="chipId != null">AND chip_id = #{chipId}</if>
+            <if test="hash != null">AND hash = #{hash}</if>
+            <if test="toWallet != null">AND to_wallet = #{toWallet}</if>
+            <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
+            <if test="money != null">AND money = #{money}</if>
+        </where>
     </select>
 </mapper>

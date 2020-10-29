@@ -29,6 +29,8 @@ public class BlockHashServiceImpl implements BlockHashService{
         if (!tbUser.isSysAdmin()){
             BlockDevice bd = new BlockDevice(chipId);
             bd.setTenantId(tbUser.getTenantId().getId());
+            bd.setPageNum(0);
+            bd.setPageSize(10);
             if (!tbUser.isTenantAdmin()){
                 bd.setCustomerId(tbUser.getCustomerId().getId());
             }
@@ -41,7 +43,10 @@ public class BlockHashServiceImpl implements BlockHashService{
             return ResultListInfo.error("请输出查询参数");
         }
         BlockHash selBh = new BlockHash(chipId, toWallet, fromWallet);
+        selBh.setPageNum((bh.getPageNum()-1)*bh.getPageSize());
+        selBh.setPageSize(bh.getPageSize());
         List<BlockHash> select = blockHashMapper.select(selBh);
-        return ResultListInfo.success(select, "", 0, 0, 0);
+        Integer integer = blockHashMapper.selectCount(selBh);
+        return ResultListInfo.success(select, "", integer, bh.getPageNum(), bh.getPageSize());
     }
 }

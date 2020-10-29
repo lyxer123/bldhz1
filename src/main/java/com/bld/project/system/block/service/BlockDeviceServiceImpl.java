@@ -57,7 +57,7 @@ public class BlockDeviceServiceImpl implements BlockDeviceService {
     @Override
     public ResultListInfo select(BlockDevice bd) {
         int pageNum = bd.getPageNum();
-        bd.setPageNum(bd.getPageNum()-1);
+        bd.setPageNum((bd.getPageNum()-1)*bd.getPageSize());
         int pageSize = bd.getPageSize();
         List<BlockDevice> select = blockDeviceMapper.select(bd);
         Integer integer = blockDeviceMapper.selectCount(bd);
