@@ -1,18 +1,24 @@
 package com.bld.project.system.block.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.bld.common.utils.StringUtils;
 import com.bld.common.utils.security.ShiroUtils;
 import com.bld.framework.utils.OkHttpUtil;
 import com.bld.framework.web.domain.ResultInfo;
 import com.bld.framework.web.domain.ResultListInfo;
 import com.bld.project.system.block.mapper.BlockDeviceMapper;
+import com.bld.project.system.block.mapper.HzBlockDeviceMapper;
 import com.bld.project.system.block.model.Block;
 import com.bld.project.system.block.model.BlockDevice;
 import com.bld.project.system.customer.service.CustomerService;
 import com.bld.project.system.device.service.DeviceService;
 import com.bld.project.utils.BlockUtils;
+import com.bld.project.utils.ListQuery;
+import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -40,6 +46,9 @@ public class BlockDeviceServiceImpl implements BlockDeviceService {
     @Resource
     private DeviceService deviceService;
 
+    @Autowired
+    private HzBlockDeviceMapper hzBlockDeviceMapper;
+
     @Value("${block.peerUrl1}")
     private String peerUrl1;
     @Value("${block.password}")
@@ -48,9 +57,11 @@ public class BlockDeviceServiceImpl implements BlockDeviceService {
     @Override
     public ResultListInfo select(BlockDevice bd) {
         int pageNum = bd.getPageNum();
+        bd.setPageNum(bd.getPageNum()-1);
         int pageSize = bd.getPageSize();
         List<BlockDevice> select = blockDeviceMapper.select(bd);
-        return ResultListInfo.success(select, "查询成功", 0, pageNum, pageSize);
+        Integer integer = blockDeviceMapper.selectCount(bd);
+        return ResultListInfo.success(select, "查询成功", integer, pageNum, pageSize);
     }
 
     @Resource
