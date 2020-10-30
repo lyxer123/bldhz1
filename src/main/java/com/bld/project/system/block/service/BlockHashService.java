@@ -4,6 +4,7 @@ import com.bld.framework.web.domain.ResultListInfo;
 import com.bld.project.system.block.model.BlockHash;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author SOFAS
@@ -12,4 +13,6 @@ import java.util.List;
 */
 public interface BlockHashService {
     ResultListInfo select(BlockHash bh);
+
+    Map<String,Object> searchTableMoneyData(BlockHash bh);
 }

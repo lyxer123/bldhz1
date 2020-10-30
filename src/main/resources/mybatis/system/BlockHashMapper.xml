@@ -15,12 +15,12 @@
     <insert id="add">
         INSERT INTO block_hash
         <trim prefix="(" suffix=")" prefixOverrides=",">
-           <if test="chipId != null">,chip_id</if>
-           <if test="hash != null">,hash</if>
-           <if test="toWallet != null">,to_wallet</if>
-           <if test="fromWallet != null">,from_wallet</if>
-           <if test="money != null">,money</if>
-           <if test="addTime != null">,add_time</if>
+            <if test="chipId != null">,chip_id</if>
+            <if test="hash != null">,hash</if>
+            <if test="toWallet != null">,to_wallet</if>
+            <if test="fromWallet != null">,from_wallet</if>
+            <if test="money != null">,money</if>
+            <if test="addTime != null">,add_time</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" prefixOverrides=",">
@@ -49,12 +49,12 @@
         UPDATE block_hash
         <trim prefix="SET" prefixOverrides=",">
             <trim prefixOverrides="AND">
-                <if test="update.chipId != null"> ,chip_id = #{update.chipId}</if>
-                <if test="update.hash != null"> ,hash = #{update.hash}</if>
-                <if test="update.toWallet != null"> ,to_wallet = #{update.toWallet}</if>
-                <if test="update.fromWallet != null"> ,from_wallet = #{update.fromWallet}</if>
-                <if test="update.money != null"> ,money = #{update.money}</if>
-                <if test="update.addTime != null"> ,add_time = #{update.addTime}</if>
+                <if test="update.chipId != null">,chip_id = #{update.chipId}</if>
+                <if test="update.hash != null">,hash = #{update.hash}</if>
+                <if test="update.toWallet != null">,to_wallet = #{update.toWallet}</if>
+                <if test="update.fromWallet != null">,from_wallet = #{update.fromWallet}</if>
+                <if test="update.money != null">,money = #{update.money}</if>
+                <if test="update.addTime != null">,add_time = #{update.addTime}</if>
             </trim>
         </trim>
         WHERE
@@ -78,6 +78,7 @@
             <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
             <if test="money != null">AND money = #{money}</if>
         </where>
+        order by add_time desc
         limit #{pageNum},#{pageSize}
     </select>
 
@@ -90,6 +91,53 @@
             <if test="toWallet != null">AND to_wallet = #{toWallet}</if>
             <if test="fromWallet != null">AND from_wallet = #{fromWallet}</if>
             <if test="money != null">AND money = #{money}</if>
+        </where>
+    </select>
+
+    <select id="searchTableMoneyData" resultType="com.bld.project.system.block.model.BlockHash" parameterType="com.bld.project.system.block.model.BlockHash">
+        SELECT
+        be.chip_id,
+        be.device_wallet,
+        be.device_token,
+        bh.`hash`
+        FROM
+        block_device be
+        LEFT JOIN block_hash bh ON be.chip_id = bh.chip_id
+        <where>
+            <if test="chipId != null and chipId != '' ">
+                be.chip_id = #{chipId}
+            </if>
+            <if test="deviceWallet != null and deviceWallet != ''">
+                and be.device_wallet = #{deviceWallet}
+            </if>
+            <if test="deviceToken != null and deviceToken!= '' ">
+                and be.device_token = #{deviceToken}
+            </if>
+            <if test="hash != null and hash != ''">and bh.`hash` = #{hash}</if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="searchTableMoneyDataCount" resultType="integer" parameterType="com.bld.project.system.block.model.BlockHash">
+        SELECT
+        be.chip_id,
+        be.device_wallet,
+        be.device_token,
+        bh.`hash`
+        FROM
+        block_device be
+        LEFT JOIN block_hash bh ON be.chip_id = bh.chip_id
+        <where>
+            <if test="chipId != null and chipId != '' ">
+                be.chip_id = #{chipId}
+            </if>
+            <if test="deviceWallet != null and deviceWallet != ''">
+                and be.device_wallet = #{deviceWallet}
+            </if>
+            <if test="deviceToken != null and deviceToken!= '' ">
+                and be.device_token = #{deviceToken}
+            </if>
+            <if test="hash != null and hash != ''">and bh.`hash` = #{hash}</if>
         </where>
     </select>
 </mapper>

@@ -11,7 +11,9 @@ import com.bld.project.system.user.domain.ThingsboardUser;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlockHashServiceImpl implements BlockHashService{
@@ -48,5 +50,18 @@ public class BlockHashServiceImpl implements BlockHashService{
         List<BlockHash> select = blockHashMapper.select(selBh);
         Integer integer = blockHashMapper.selectCount(selBh);
         return ResultListInfo.success(select, "", integer, bh.getPageNum(), bh.getPageSize());
+    }
+
+    @Override
+    public Map<String,Object> searchTableMoneyData(BlockHash bh) {
+        Map<String,Object> map = new HashMap<>();
+        bh.setPageNum((bh.getPageNum()-1)*bh.getPageSize());
+        //查詢數據
+        List<BlockHash> blockHash = blockHashMapper.searchTableMoneyData(bh);
+        //查詢總條數
+        Integer integer = blockHashMapper.searchTableMoneyDataCount(bh);
+        map.put("data",blockHash);
+        map.put("total",integer);
+        return map;
     }
 }

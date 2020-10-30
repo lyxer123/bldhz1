@@ -46,4 +46,8 @@ public interface BlockHashMapper {
     List<BlockHash> select(BlockHash bh);
 
     Integer selectCount(BlockHash bh);
+
+    List<BlockHash> searchTableMoneyData(BlockHash bh);
+
+    Integer searchTableMoneyDataCount(BlockHash bh);
 }

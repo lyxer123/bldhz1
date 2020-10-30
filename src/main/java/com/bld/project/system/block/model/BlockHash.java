@@ -40,6 +40,9 @@ public class BlockHash extends BldListQurys implements Serializable {
      */
     private Date updateTime;
 
+    private String deviceWallet;
+    private String deviceToken;
+
     public BlockHash() { }
 
     public BlockHash(String chipId, String toWallet, String fromWallet) {

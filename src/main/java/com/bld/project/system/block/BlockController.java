@@ -34,6 +34,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("block")
 @RestController
@@ -60,6 +61,11 @@ public class BlockController {
     @GetMapping("searchBlockHash.json")
     public ResultListInfo searchBlockHash(BlockHash bh){
         return blockHashService.select(bh);
+    }
+
+    @GetMapping("searchTableMoneyData.json")
+    public Map<String,Object> searchTableMoneyData(BlockHash bh){
+        return blockHashService.searchTableMoneyData(bh);
     }
 
     @GetMapping("searchDeviceGps.json")
