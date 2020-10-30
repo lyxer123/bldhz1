@@ -36,7 +36,7 @@ public class insertFileSize implements ApplicationRunner {
         initDelay = initDelay>0?initDelay:initDelay+oneDay;
         scheduledExecutorService.scheduleAtFixedRate(()->{
             System.out.println("kaishi");
-            besuFileMapper.insertFile(FileUtils.sizeOf(new File("D:\\apache-maven-3.3.9-changku"))/1024/1024);
+            besuFileMapper.insertFile(FileUtils.sizeOf(new File("/usr/local/besu"))/1024/1024);
         },initDelay,oneDay, TimeUnit.MILLISECONDS);
 
     }

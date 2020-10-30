@@ -65,6 +65,7 @@
             <if test="where.fromWallet != null">AND from_wallet = #{where.fromWallet}</if>
             <if test="where.money != null">AND money = #{where.money}</if>
         </trim>
+
     </update>
 
     <select id="select" resultMap="blockDeviceBaseMap">
