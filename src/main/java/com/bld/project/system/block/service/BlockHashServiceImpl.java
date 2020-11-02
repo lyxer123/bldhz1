@@ -53,7 +53,7 @@ public class BlockHashServiceImpl implements BlockHashService{
     }
 
     @Override
-    public Map<String,Object> searchTableMoneyData(BlockHash bh) {
+    public ResultListInfo searchTableMoneyData(BlockHash bh) {
         Map<String,Object> map = new HashMap<>();
         bh.setPageNum((bh.getPageNum()-1)*bh.getPageSize());
         //查詢數據
@@ -61,7 +61,6 @@ public class BlockHashServiceImpl implements BlockHashService{
         //查詢總條數
         Integer integer = blockHashMapper.searchTableMoneyDataCount(bh);
         map.put("data",blockHash);
-        map.put("total",integer);
-        return map;
+        return ResultListInfo.success(blockHash,"",integer,0,0);
     }
 }

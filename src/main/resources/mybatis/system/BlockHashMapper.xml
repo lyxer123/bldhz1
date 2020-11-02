@@ -101,43 +101,26 @@
         be.device_token,
         bh.`hash`
         FROM
-        block_device be
-        LEFT JOIN block_hash bh ON be.chip_id = bh.chip_id
+        block_hash bh
+        LEFT JOIN block_device be  ON be.chip_id = bh.chip_id
         <where>
-            <if test="chipId != null and chipId != '' ">
-                be.chip_id = #{chipId}
+            <if test="search != null and search != '' ">
+                bh.chip_id = #{search} or be.device_wallet = #{search} or be.device_token = #{search} or bh.`hash` = #{search}
             </if>
-            <if test="deviceWallet != null and deviceWallet != ''">
-                and be.device_wallet = #{deviceWallet}
-            </if>
-            <if test="deviceToken != null and deviceToken!= '' ">
-                and be.device_token = #{deviceToken}
-            </if>
-            <if test="hash != null and hash != ''">and bh.`hash` = #{hash}</if>
         </where>
         limit #{pageNum},#{pageSize}
     </select>
 
     <select id="searchTableMoneyDataCount" resultType="integer" parameterType="com.bld.project.system.block.model.BlockHash">
         SELECT
-        be.chip_id,
-        be.device_wallet,
-        be.device_token,
-        bh.`hash`
+        count( bh.id )
         FROM
-        block_device be
-        LEFT JOIN block_hash bh ON be.chip_id = bh.chip_id
+        block_hash bh FORCE INDEX ( PRIMARY )
+        LEFT JOIN block_device be ON be.chip_id = bh.chip_id
         <where>
-            <if test="chipId != null and chipId != '' ">
-                be.chip_id = #{chipId}
+            <if test="search != null and search != '' ">
+                bh.chip_id = #{search} or be.device_wallet = #{search} or be.device_token = #{search} or bh.`hash` = #{search}
             </if>
-            <if test="deviceWallet != null and deviceWallet != ''">
-                and be.device_wallet = #{deviceWallet}
-            </if>
-            <if test="deviceToken != null and deviceToken!= '' ">
-                and be.device_token = #{deviceToken}
-            </if>
-            <if test="hash != null and hash != ''">and bh.`hash` = #{hash}</if>
         </where>
     </select>
 </mapper>

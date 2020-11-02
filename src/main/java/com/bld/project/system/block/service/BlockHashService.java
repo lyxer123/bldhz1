@@ -14,5 +14,5 @@ import java.util.Map;
 public interface BlockHashService {
     ResultListInfo select(BlockHash bh);
 
-    Map<String,Object> searchTableMoneyData(BlockHash bh);
+    ResultListInfo searchTableMoneyData(BlockHash bh);
 }

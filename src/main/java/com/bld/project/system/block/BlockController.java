@@ -64,7 +64,7 @@ public class BlockController {
     }
 
     @GetMapping("searchTableMoneyData.json")
-    public Map<String,Object> searchTableMoneyData(BlockHash bh){
+    public ResultListInfo searchTableMoneyData(BlockHash bh){
         return blockHashService.searchTableMoneyData(bh);
     }
 
