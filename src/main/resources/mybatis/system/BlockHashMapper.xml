@@ -105,7 +105,10 @@
         LEFT JOIN block_device be  ON be.chip_id = bh.chip_id
         <where>
             <if test="search != null and search != '' ">
-                bh.chip_id = #{search} or be.device_wallet = #{search} or be.device_token = #{search} or bh.`hash` = #{search}
+                   instr(bh.chip_id,#{search})>0
+                or be.device_wallet = #{search}
+                or be.device_token = #{search}
+                or bh.`hash` = #{search}
             </if>
         </where>
         limit #{pageNum},#{pageSize}
@@ -119,7 +122,10 @@
         LEFT JOIN block_device be ON be.chip_id = bh.chip_id
         <where>
             <if test="search != null and search != '' ">
-                bh.chip_id = #{search} or be.device_wallet = #{search} or be.device_token = #{search} or bh.`hash` = #{search}
+                instr(bh.chip_id,#{search})>0
+                or be.device_wallet = #{search}
+                or be.device_token = #{search}
+                or bh.`hash` = #{search}
             </if>
         </where>
     </select>
