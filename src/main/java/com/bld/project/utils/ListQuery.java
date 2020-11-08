@@ -32,6 +32,14 @@ public class ListQuery {
     @JsonAlias("id")
     private String id;
 
+    @JsonAlias("idOffset")
+    private String idOffset;
+
+    @JsonAlias("textOffset")
+    private String textOffset;
+
+
+
     public int getLimit() {
         return this.limit == 0 ? 50 : limit;
     }

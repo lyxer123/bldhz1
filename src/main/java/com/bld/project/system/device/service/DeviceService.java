@@ -25,7 +25,7 @@ public interface DeviceService {
      * @param search  查询调教
      * @return  com.bld.framework.web.domain.ResultInfo
      */
-    ResultInfo<List<TbDevice>> searchDevice(int limit, String search, String tbToken);
+    ResultInfo<List<TbDevice>> searchDevice(int limit, String search, String tbToken,String textOffset,String  idOffset);
     /**
      * @author SOFAS
      * @date   2020/7/3

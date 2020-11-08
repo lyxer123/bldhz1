@@ -1,6 +1,7 @@
 package com.bld.project.system.device.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bld.project.newlyadded.untils.TextPageLink;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.bld.common.utils.security.ShiroUtils;
@@ -36,15 +37,20 @@ public class DeviceServiceImpl implements DeviceService{
     private BlockDeviceMapper blockDeviceMapper;
 
     @Override
-    public ResultInfo<List<TbDevice>> searchDevice(int limit, String search, String tbToken) {
-        String url = TbApiUtils.searchDeviceApi(limit, search);
+    public ResultInfo<List<TbDevice>> searchDevice(int limit, String search, String tbToken,String textOffset,String  idOffset) {
+       // String url = TbApiUtils.searchDeviceApi(limit, search);
+        String url = "http://125.64.98.21:8088/api/tenant/devices?limit="+ limit + (search == null ? "" : "&textSearch=" + search)+"&idOffset="+idOffset+"&textOffset="+textOffset;
+        System.out.println("发送请求"+url);
         JSONObject j;
         ResultInfo<String> resultInfo = TbApiUtils.bldGet(url, tbToken);
+
+        System.out.println(resultInfo);
         if (resultInfo.isSuccess()){
             j = JSONObject.parseObject(resultInfo.getData());
             List<TbDevice> list = JSONObject.parseArray(j.getString("data"), TbDevice.class);
+            TextPageLink nextPageLink = JSONObject.parseObject(j.getString("nextPageLink"), TextPageLink.class);
             System.out.println(list);
-            return ResultInfo.success(list, tbToken.substring(7));
+            return ResultInfo.success(list, tbToken.substring(7),nextPageLink==null?"":nextPageLink.getTextOffset(),nextPageLink==null?"":nextPageLink.getIdOffset().toString());
         }
         return ResultInfo.error("没有查询到数据");
     }
@@ -54,6 +60,7 @@ public class DeviceServiceImpl implements DeviceService{
         String url = TbApiUtils.getDeviceListByCustomerIdApi(limit, search, id);
         JSONObject j = TbApiUtils.get(url);
         Object data = j.get("data");
+        //System.out.println(data);
         return data != null ? ResultInfo.success(data) : ResultInfo.error("没有查询到数据");
     }
 
@@ -123,7 +130,7 @@ public class DeviceServiceImpl implements DeviceService{
             deviceToken = resultInfo1.isSuccess() ? resultInfo1.getData() : deviceToken;
             return blockDeviceService.addBlockDevice(new BlockDevice(deviceId, tbDevice.getTenantId().getId(), tbDevice.getCustomerId().getId(), tbDevice.getName(), deviceToken, workingVersion, sn1, sn2, isBesu), tbToken);
         }else if (resultInfo.getMessage().contains("org.hibernate.exception.ConstraintViolationException")){
-            ResultInfo search = searchDevice(50, name, tbToken);
+            ResultInfo search = searchDevice(50, name, tbToken,"","");
             if (search.isSuccess()){
                 List list = JSONObject.parseObject(JSONObject.toJSONString(search.getData()), List.class);
                 Object o = list.get(0);

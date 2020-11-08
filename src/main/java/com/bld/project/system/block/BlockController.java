@@ -154,7 +154,7 @@ public class BlockController {
     public void dataSynchronous() throws NoSuchAlgorithmException, CipherException, InvalidAlgorithmParameterException, NoSuchProviderException, IOException {
         String tbToken = new TbApiUtils().loginTb();
         List<BlockDevice> select = blockDeviceMapper.select(null);
-        ResultInfo<List<TbDevice>> resultInfo = deviceService.searchDevice(10000, "", ShiroUtils.getTbToken());
+        ResultInfo<List<TbDevice>> resultInfo = deviceService.searchDevice(10000, "", ShiroUtils.getTbToken(),"","");
         if (!resultInfo.isSuccess()){
             return;
         }

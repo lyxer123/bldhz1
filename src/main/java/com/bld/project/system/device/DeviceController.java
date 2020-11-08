@@ -36,7 +36,8 @@ public class DeviceController {
     @RequestMapping("searchDeviceList.json")
     @ResponseBody
     public ResultInfo searchDeviceList(@RequestBody ListQuery query){
-        return StringUtils.isNullString(query.getId()) ? deviceService.searchDevice(query.getLimit(), query.getSearch(), ShiroUtils.getTbToken()) : deviceService.getDeviceListByCustomer(query.getLimit(), query.getSearch(), query.getId());
+        System.out.println(query);
+        return StringUtils.isNullString(query.getId()) ? deviceService.searchDevice(query.getLimit(), query.getSearch(), ShiroUtils.getTbToken(),query.getTextOffset(),query.getIdOffset()) : deviceService.getDeviceListByCustomer(query.getLimit(), query.getSearch(), query.getId());
     }
 
     @PostMapping("delDeviceDistribution.json")
@@ -187,7 +188,7 @@ public class DeviceController {
     public void autoAttributes(){
         TbApiUtils tbApiUtils = new TbApiUtils();
         String token = tbApiUtils.loginTb();
-        ResultInfo<List<TbDevice>> resultInfo = deviceService.searchDevice(1000, null, token);
+        ResultInfo<List<TbDevice>> resultInfo = deviceService.searchDevice(1000, null, token,"","");
         if (resultInfo.isSuccess()){
             for (TbDevice td : resultInfo.getData()){
                 String dId = td.getId().getId();

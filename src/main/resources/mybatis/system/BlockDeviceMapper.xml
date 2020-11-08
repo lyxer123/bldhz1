@@ -351,7 +351,9 @@
                 AND sn2 = #{sn2}
             </if>
         </where>
-
+        <if test="pageNum!=null and pageSize != null">
+            limit #{pageNum} ,#{pageSize}
+        </if>
     </select>
 
     <select id="selectCount" resultType="integer">
