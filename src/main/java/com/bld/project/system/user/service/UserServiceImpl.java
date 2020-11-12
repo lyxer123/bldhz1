@@ -502,12 +502,15 @@ public class UserServiceImpl implements IUserService
         return userMapper.updateUser(user);
     }
 
+
+
     @TokenNotNull
     @Override
     public ResultInfo getCurrentUserInfo() {
         User sysUser = ShiroUtils.getSysUser();
         /*因为获取sysUser时已经处理过thingsboard的Token空判，所以不用再次判断*/
         String s = OkHttpUtil.get(getCurrentUserInfoApi(), null, sysUser.getAuthorization());
+        System.out.println("qingiqu");
         ThingsboardUser thingsboardUser;
         try {
             thingsboardUser = JSONObject.parseObject(s, ThingsboardUser.class);

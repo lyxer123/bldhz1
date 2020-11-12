@@ -4,6 +4,7 @@ import com.bld.common.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @author SOFAS
@@ -30,6 +31,10 @@ public class ResultInfo<T> implements Serializable {
      */
     private boolean success;
 
+    private  String textOffset;
+
+    private String idOffset;
+
     public ResultInfo() { }
 
     public ResultInfo(T data, int code, String message, boolean success) {
@@ -37,6 +42,14 @@ public class ResultInfo<T> implements Serializable {
         this.code = code;
         this.message = message;
         this.success = success;
+    }
+    public ResultInfo(T data, int code, String message, boolean success,String textOffset,String idOffset) {
+        this.data = data;
+        this.code = code;
+        this.message = message;
+        this.success = success;
+        this.textOffset =textOffset;
+        this.idOffset =idOffset;
     }
 
     public static<T> ResultInfo success(T data){
@@ -46,9 +59,15 @@ public class ResultInfo<T> implements Serializable {
     public static<T> ResultInfo success(T data, String message){
         return success(data, 200, message);
     }
+    public static<T> ResultInfo success(T data, String message,String textOffset,String idOffset){
+        return success(data, 200, message,textOffset,idOffset);
+    }
 
     public static<T> ResultInfo success(T data, int code, String message){
         return new ResultInfo<>(data, code, message, true);
+    }
+    public static<T> ResultInfo success(T data, int code, String message,String textOffset,String idOffset){
+        return new ResultInfo<>(data, code, message, true,textOffset,idOffset);
     }
 
     public static<T> ResultInfo error(T data){

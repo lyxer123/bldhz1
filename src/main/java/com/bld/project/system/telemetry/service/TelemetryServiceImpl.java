@@ -31,6 +31,7 @@ public class TelemetryServiceImpl implements TelemetryService{
     public ResultInfo<JSONObject> getTelemetrys(String keys, String id) {
         String url = TbApiUtils.getTelemetrysApi(keys, id, 0, System.currentTimeMillis());
         JSONObject j = TbApiUtils.get(url);
+        System.out.println(j);
         return ResultInfo.ret(j);
     }
 }
