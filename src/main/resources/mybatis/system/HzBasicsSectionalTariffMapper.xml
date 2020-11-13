@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bld.project.system.block.mapper.HzBasicsSectionalTariffMapper">
+    <select id="searchTableData"  resultType="com.bld.project.system.block.model.BasicsSectionalTariffBo">
+        SELECT
+            bf.id,
+            bf.NAME,
+            bf.time_sectional,
+            bf.price,
+            bt.NAME sectionalName
+        FROM
+            basics_sectional_tariff bf
+            LEFT JOIN basics_equipment_list bt ON bf.equipment_list_type = bt.type
+        WHERE
+        bf.`delete` = 0
+        AND bt.`delete` = 0
+        <if test="equipmentListType != null and equipmentListType != '' and equipmentListType != 0">
+            and equipment_list_type = equipmentListType
+        </if>
+    </select>
+
+    <select id="countSearchTableData" resultType="integer">
+        SELECT
+            count(bf.id)
+        FROM
+        basics_sectional_tariff bf
+        LEFT JOIN basics_equipment_list bt ON bf.equipment_list_type = bt.type
+        WHERE
+        bf.`delete` = 0
+        AND bt.`delete` = 0
+        <if test="equipmentListType != null and equipmentListType != '' and equipmentListType != 0">
+            and equipment_list_type = equipmentListType
+        </if>
+    </select>
+</mapper>
