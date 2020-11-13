@@ -32,4 +32,21 @@
             and equipment_list_type = equipmentListType
         </if>
     </select>
+
+    <update id="deleteOperationByIds">
+        UPDATE basics_sectional_tariff
+        SET `delete` = 1
+        WHERE
+        <choose>
+            <when test="ids.size > 0">
+                id in
+                <foreach collection="ids" open="(" close=")" item="t" separator=",">
+                    #{t}
+                </foreach>
+            </when>
+            <otherwise>
+                id = -1
+            </otherwise>
+        </choose>
+    </update>
 </mapper>

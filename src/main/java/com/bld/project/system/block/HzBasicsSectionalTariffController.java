@@ -7,6 +7,7 @@ import com.bld.project.system.block.model.BlockHash;
 import com.bld.project.system.block.service.HzBasicsSectionalTariffServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,16 @@ public class HzBasicsSectionalTariffController {
     public ResultListInfo searchTableData(@RequestParam Map<String,String> map){
         try {
             return hzBasicsSectionalTariffService.searchTableData(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultListInfo.error(null,0,0);
+        }
+    }
+
+    @PostMapping("deleteOperation.json")
+    public ResultListInfo deleteOperationByIds(BasicsSectionalTariffBo b){
+        try {
+            return hzBasicsSectionalTariffService.deleteOperationByIds(b);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultListInfo.error(null,0,0);

@@ -7,6 +7,7 @@ import jnr.ffi.annotations.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,5 +30,10 @@ public class HzBasicsSectionalTariffServiceImpl {
         List<BasicsSectionalTariffBo> basicsSectionalTariffBos = hzBasicsSectionalTariffMapper.searchTableData(map);
         Integer integer = hzBasicsSectionalTariffMapper.countSearchTableData(map);
         return ResultListInfo.success(basicsSectionalTariffBos, "查询成功", integer, 0, 0);
+    }
+
+    public ResultListInfo deleteOperationByIds(BasicsSectionalTariffBo b){
+        Integer integer = hzBasicsSectionalTariffMapper.deleteOperationByIds(b);
+        return ResultListInfo.success(integer, "删除成功", 0, 0, 0);
     }
 }
