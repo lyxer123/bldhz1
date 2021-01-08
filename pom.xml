@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 	<!--<packaging>war</packaging>-->
 
-	<name>bld111</name>
+	<name>bld</name>
 	<description>充电链</description>
 
 	<parent>
@@ -357,10 +357,15 @@
         </dependency>
 
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
     </dependencies>
 
 	<build>
-		<finalName>bld111</finalName>
+		<finalName>bld</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -819,10 +819,8 @@ public class RoleController extends BaseController {
             return JSONObject.parseObject("该chipId没有对应的设备");
         }
         BlockDevice blockDevice = list.get(0);
-
-        ResultInfo<String> br = BlockUtils.blockTransaction("a963d384cac4927a4f632be6d51c74e3d549538f", blockDevice.getDeviceWallet(), new BigInteger("10000", 10), BlockUtils.gas, BlockUtils.gas_limit, param.toJSONString());
+        ResultInfo<String> br = BlockUtils.blockTransaction("3e1d94b47867010e37c078f69326e1f1ce5417b2", blockDevice.getDeviceWallet(), new BigInteger("10000", 10), BlockUtils.gas, BlockUtils.gas_limit, param.toJSONString());
         String data = br.getData();
-
         JSONObject res = new JSONObject();
         if (br.isSuccess() && !StringUtils.isNullString(data)){
             res.put("result", data);

@@ -415,7 +415,7 @@ public class BlockController {
         List<BlockDevice> select = blockDeviceMapper.select(new BlockDevice());
         for (BlockDevice bd : select){
             BlockDevice bdUp = new BlockDevice();
-            bdUp.setToWallet("a963d384cac4927a4f632be6d51c74e3d549538f");
+            bdUp.setToWallet("3e1d94b47867010e37c078f69326e1f1ce5417b2");
             Block wallet = BlockUtils.getWallet();
             bd.setDeviceWallet(wallet.getAddr());
             BlockDevice wh = new BlockDevice();

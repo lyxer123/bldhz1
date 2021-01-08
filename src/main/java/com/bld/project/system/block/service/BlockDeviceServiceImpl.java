@@ -109,7 +109,7 @@ public class BlockDeviceServiceImpl implements BlockDeviceService {
                 e.printStackTrace();
                 return ResultInfo.error("添加失败");
             }
-            bd.setToWallet("0xa963D384CAC4927a4f632BE6D51C74E3D549538f");
+            bd.setToWallet("0x3e1d94b47867010e37c078f69326e1f1ce5417b2");
         }else {
             //        获取转账钱包
             String coinbaseJson = "{\"jsonrpc\":\"2.0\",\"method\":\"eth_coinbase\",\"params\":[],\"id\":64}";
